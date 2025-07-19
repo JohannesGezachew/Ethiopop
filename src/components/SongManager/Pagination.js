@@ -1,0 +1,170 @@
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import styled from '@emotion/styled';
+import { setCurrentPage, setPageSize } from '@store/slices/songsSlice';
+import Button from '../UI/Button';
+
+const PaginationContainer = styled.div`
+  display: flex;
+  justify-content: between;
+  align-items: center;
+  gap: ${props => props.theme.space[4]}px;
+  flex-wrap: wrap;
+  margin-top: ${props => props.theme.space[4]}px;
+`;
+
+const PaginationInfo = styled.div`
+  font-size: ${props => props.theme.fontSizes.sm};
+  color: ${props => props.theme.colors.gray[600]};
+  flex: 1;
+`;
+
+const PaginationControls = styled.div`
+  display: flex;
+  align-items: center;
+  gap: ${props => props.theme.space[2]}px;
+`;
+
+const PageSizeSelector = styled.select`
+  padding: ${props => props.theme.space[2]}px ${props => props.theme.space[3]}px;
+  border: 1px solid ${props => props.theme.colors.gray[300]};
+  border-radius: ${props => props.theme.radii.md};
+  font-size: ${props => props.theme.fontSizes.sm};
+  background-color: ${props => props.theme.colors.white};
+  cursor: pointer;
+  
+  &:focus {
+    outline: none;
+    border-color: ${props => props.theme.colors.primary[500]};
+    box-shadow: 0 0 0 3px ${props => props.theme.colors.primary[100]};
+  }
+`;
+
+const PageNumbers = styled.div`
+  display: flex;
+  gap: ${props => props.theme.space[1]}px;
+`;
+
+const PageButton = styled(Button)`
+  min-width: 40px;
+  height: 40px;
+  padding: 0;
+`;
+
+const Pagination = () => {
+  const dispatch = useDispatch();
+  const { 
+    currentPage, 
+    totalPages, 
+    totalSongs, 
+    pageSize,
+    songs 
+  } = useSelector(state => state.songs);
+
+  const handlePageChange = (page) => {
+    if (page >= 1 && page <= totalPages) {
+      dispatch(setCurrentPage(page));
+    }
+  };
+
+  const handlePageSizeChange = (e) => {
+    dispatch(setPageSize(parseInt(e.target.value)));
+  };
+
+  const getVisiblePages = () => {
+    const delta = 2;
+    const range = [];
+    const rangeWithDots = [];
+
+    for (
+      let i = Math.max(2, currentPage - delta);
+      i <= Math.min(totalPages - 1, currentPage + delta);
+      i++
+    ) {
+      range.push(i);
+    }
+
+    if (currentPage - delta > 2) {
+      rangeWithDots.push(1, '...');
+    } else {
+      rangeWithDots.push(1);
+    }
+
+    rangeWithDots.push(...range);
+
+    if (currentPage + delta < totalPages - 1) {
+      rangeWithDots.push('...', totalPages);
+    } else if (totalPages > 1) {
+      rangeWithDots.push(totalPages);
+    }
+
+    return rangeWithDots;
+  };
+
+  if (totalSongs === 0) {
+    return null;
+  }
+
+  const startItem = (currentPage - 1) * pageSize + 1;
+  const endItem = Math.min(currentPage * pageSize, totalSongs);
+  const visiblePages = getVisiblePages();
+
+  return (
+    <PaginationContainer>
+      <PaginationInfo>
+        Showing {startItem} to {endItem} of {totalSongs} songs
+      </PaginationInfo>
+      
+      <PaginationControls>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <span style={{ fontSize: '14px', color: '#6b7280' }}>Show:</span>
+          <PageSizeSelector
+            value={pageSize}
+            onChange={handlePageSizeChange}
+          >
+            <option value={5}>5</option>
+            <option value={10}>10</option>
+            <option value={20}>20</option>
+            <option value={50}>50</option>
+          </PageSizeSelector>
+        </div>
+        
+        {totalPages > 1 && (
+          <PageNumbers>
+            <PageButton
+              variant="secondary"
+              size="sm"
+              disabled={currentPage === 1}
+              onClick={() => handlePageChange(currentPage - 1)}
+            >
+              ←
+            </PageButton>
+            
+            {visiblePages.map((page, index) => (
+              <PageButton
+                key={index}
+                variant={page === currentPage ? 'primary' : 'secondary'}
+                size="sm"
+                disabled={page === '...'}
+                onClick={() => typeof page === 'number' && handlePageChange(page)}
+              >
+                {page}
+              </PageButton>
+            ))}
+            
+            <PageButton
+              variant="secondary"
+              size="sm"
+              disabled={currentPage === totalPages}
+              onClick={() => handlePageChange(currentPage + 1)}
+            >
+              →
+            </PageButton>
+          </PageNumbers>
+        )}
+      </PaginationControls>
+    </PaginationContainer>
+  );
+};
+
+export default Pagination;
