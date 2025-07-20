@@ -4,8 +4,6 @@ const initialState = {
   isCreateModalOpen: false,
   isEditModalOpen: false,
   isDeleteModalOpen: false,
-  viewMode: 'table', // 'table' or 'grid'
-  theme: 'light',
   notifications: [],
 };
 
@@ -31,12 +29,7 @@ const uiSlice = createSlice({
     closeDeleteModal: (state) => {
       state.isDeleteModalOpen = false;
     },
-    setViewMode: (state, action) => {
-      state.viewMode = action.payload;
-    },
-    toggleTheme: (state) => {
-      state.theme = state.theme === 'light' ? 'dark' : 'light';
-    },
+
     addNotification: (state, action) => {
       state.notifications.push({
         id: Date.now(),
@@ -58,8 +51,6 @@ export const {
   closeEditModal,
   openDeleteModal,
   closeDeleteModal,
-  setViewMode,
-  toggleTheme,
   addNotification,
   removeNotification,
 } = uiSlice.actions;

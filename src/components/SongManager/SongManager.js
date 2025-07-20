@@ -5,7 +5,6 @@ import { fetchSongsRequest } from '@store/slices/songsSlice';
 import SongHeader from './SongHeader';
 import SongFilters from './SongFilters';
 import SongTable from './SongTable';
-import SongGrid from './SongGrid';
 import SongModals from './SongModals';
 import Pagination from './Pagination';
 
@@ -27,8 +26,7 @@ const SongManager = () => {
     currentPage, 
     pageSize, 
     filters, 
-    loading,
-    viewMode 
+    loading
   } = useSelector(state => state.songs);
 
   useEffect(() => {
@@ -44,7 +42,7 @@ const SongManager = () => {
       <SongHeader />
       <SongFilters />
       <ContentArea>
-        {viewMode === 'table' ? <SongTable /> : <SongGrid />}
+        <SongTable />
         <Pagination />
       </ContentArea>
       <SongModals />

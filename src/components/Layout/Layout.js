@@ -8,18 +8,18 @@ const LayoutContainer = styled.div`
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: ${props => props.theme.colors.gray[50]};
+  background-color: ${props => props.theme.colors.white};
 `;
 
 const Main = styled.main`
   flex: 1;
-  padding: ${props => props.theme.space[6]}px;
+  padding: ${props => props.theme.space[8]}px ${props => props.theme.space[6]}px;
   max-width: ${props => props.theme.sizes.container.xl};
   margin: 0 auto;
   width: 100%;
 
   @media (max-width: ${props => props.theme.breakpoints[0]}) {
-    padding: ${props => props.theme.space[4]}px;
+    padding: ${props => props.theme.space[6]}px ${props => props.theme.space[4]}px;
   }
 `;
 

@@ -3,6 +3,8 @@ import { Global, css } from '@emotion/react';
 export const GlobalStyles = () => (
   <Global
     styles={css`
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
       * {
         box-sizing: border-box;
         margin: 0;
@@ -16,7 +18,7 @@ export const GlobalStyles = () => (
 
       body {
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-        background-color: #f9fafb;
+        background-color: #ffffff;
         color: #111827;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
