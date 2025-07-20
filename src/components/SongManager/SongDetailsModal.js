@@ -140,11 +140,17 @@ const SongDetailsModal = () => {
     dispatch(closeSongDetailsModal());
   };
 
-  const handleYouTubeSearch = () => {
+  const handleYouTubeAction = () => {
     if (selectedSong) {
-      const searchQuery = `${selectedSong.title} ${selectedSong.artist} Ethiopian music`;
-      const youtubeUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(searchQuery)}`;
-      window.open(youtubeUrl, '_blank');
+      if (selectedSong.youtubeUrl && selectedSong.youtubeUrl.trim()) {
+        // If there's a direct YouTube URL, open it
+        window.open(selectedSong.youtubeUrl, '_blank');
+      } else {
+        // Otherwise, search for the song
+        const searchQuery = `${selectedSong.title} ${selectedSong.artist} Ethiopian music`;
+        const youtubeUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(searchQuery)}`;
+        window.open(youtubeUrl, '_blank');
+      }
     }
   };
 
@@ -202,8 +208,11 @@ const SongDetailsModal = () => {
         )}
 
         <YouTubeSection>
-          <YouTubeButton onClick={handleYouTubeSearch}>
-            Listen on YouTube
+          <YouTubeButton onClick={handleYouTubeAction}>
+            {selectedSong.youtubeUrl && selectedSong.youtubeUrl.trim() 
+              ? 'Watch on YouTube' 
+              : 'Search on YouTube'
+            }
           </YouTubeButton>
         </YouTubeSection>
       </DetailsContainer>

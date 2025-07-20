@@ -20,6 +20,7 @@ const CreateSongModal = () => {
     duration: 180,
     language: 'Amharic',
     description: '',
+    youtubeUrl: '',
   });
 
   const [errors, setErrors] = useState({});
@@ -35,6 +36,7 @@ const CreateSongModal = () => {
       duration: 180,
       language: 'Amharic',
       description: '',
+      youtubeUrl: '',
     });
     setErrors({});
   };
@@ -64,6 +66,14 @@ const CreateSongModal = () => {
 
     if (formData.duration < 1 || formData.duration > 3600) {
       newErrors.duration = 'Duration must be between 1 and 3600 seconds';
+    }
+
+    // YouTube URL validation (optional field)
+    if (formData.youtubeUrl && formData.youtubeUrl.trim()) {
+      const youtubeRegex = /^(https?:\/\/)?(www\.)?(youtube\.com\/(watch\?v=|embed\/)|youtu\.be\/)[\w-]+/;
+      if (!youtubeRegex.test(formData.youtubeUrl.trim())) {
+        newErrors.youtubeUrl = 'Please enter a valid YouTube URL';
+      }
     }
 
     setErrors(newErrors);

@@ -109,6 +109,14 @@ const SongForm = ({ id, formData, setFormData, errors, onSubmit }) => {
         rows={3}
       />
       
+      <Input
+        label="YouTube Link (Optional)"
+        placeholder="https://www.youtube.com/watch?v=..."
+        value={formData.youtubeUrl || ''}
+        onChange={(e) => handleChange('youtubeUrl', e.target.value)}
+        error={errors.youtubeUrl}
+      />
+      
       <FormRow>
         <Input
           label="Year"

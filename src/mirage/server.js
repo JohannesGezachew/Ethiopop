@@ -72,6 +72,27 @@ export function makeServer({ environment = 'development' } = {}) {
             'A heartfelt tribute to Ethiopian mothers and families, featuring tender vocals and traditional accompaniment.'
           ];
           return descriptions[i % descriptions.length];
+        },
+        youtubeUrl(i) {
+          // Some songs have YouTube URLs, others don't (to simulate real data)
+          const urls = [
+            'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+            'https://www.youtube.com/watch?v=3JZ_D3ELwOQ',
+            'https://youtu.be/kJQP7kiw5Fk',
+            'https://www.youtube.com/watch?v=9bZkp7q19f0',
+            '', // Empty for some songs
+            'https://www.youtube.com/watch?v=2Vv-BfVoq4g',
+            '', // Empty for some songs
+            'https://youtu.be/60ItHLz5WEA',
+            'https://www.youtube.com/watch?v=fJ9rUzIMcZQ',
+            '', // Empty for some songs
+            'https://www.youtube.com/watch?v=ZZ5LpwO-An4',
+            'https://youtu.be/HEXWRTEbj1I',
+            '', // Empty for some songs
+            'https://www.youtube.com/watch?v=L_jWHffIx5E',
+            'https://www.youtube.com/watch?v=kffacxfA7G4'
+          ];
+          return urls[i % urls.length];
         }
       }),
     },
