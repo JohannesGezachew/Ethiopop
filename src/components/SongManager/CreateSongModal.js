@@ -73,7 +73,8 @@ const CreateSongModal = () => {
     
     if (validateForm()) {
       dispatch(createSongRequest(formData));
-      handleClose();
+      // Don't close immediately - let the saga handle success/failure
+      // The modal will close when the operation completes successfully
     }
   };
 

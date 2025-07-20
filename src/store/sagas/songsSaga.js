@@ -13,7 +13,7 @@ import {
   deleteSongSuccess,
   deleteSongFailure,
 } from '../slices/songsSlice';
-import { addNotification } from '../slices/uiSlice';
+import { addNotification, closeCreateModal, closeEditModal, closeDeleteModal } from '../slices/uiSlice';
 import * as songsApi from '@utils/api';
 
 function* fetchSongsSaga(action) {
@@ -34,6 +34,7 @@ function* createSongSaga(action) {
   try {
     const newSong = yield call(songsApi.createSong, action.payload);
     yield put(createSongSuccess(newSong));
+    yield put(closeCreateModal()); // Close the modal on success
     yield put(addNotification({
       type: 'success',
       message: 'Song created successfully',
@@ -56,6 +57,7 @@ function* updateSongSaga(action) {
   try {
     const updatedSong = yield call(songsApi.updateSong, action.payload.id, action.payload.data);
     yield put(updateSongSuccess(updatedSong));
+    yield put(closeEditModal()); // Close the modal on success
     yield put(addNotification({
       type: 'success',
       message: 'Song updated successfully',
@@ -78,6 +80,7 @@ function* deleteSongSaga(action) {
   try {
     yield call(songsApi.deleteSong, action.payload);
     yield put(deleteSongSuccess(action.payload));
+    yield put(closeDeleteModal()); // Close the modal on success
     yield put(addNotification({
       type: 'success',
       message: 'Song deleted successfully',
