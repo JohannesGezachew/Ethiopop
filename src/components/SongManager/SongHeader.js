@@ -58,7 +58,7 @@ const SongHeader = () => {
       </HeaderLeft>
       <HeaderRight>
         <Button onClick={handleCreateSong}>
-          ➕ Add Song
+          Add New Song
         </Button>
       </HeaderRight>
     </HeaderContainer>

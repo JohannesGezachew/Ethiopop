@@ -4,7 +4,6 @@ import styled from '@emotion/styled';
 import { setSelectedSong } from '@store/slices/songsSlice';
 import { openEditModal, openDeleteModal } from '@store/slices/uiSlice';
 import Button from '../UI/Button';
-import Card from '../UI/Card';
 
 const TableContainer = styled.div`
   background: ${props => props.theme.colors.white};
@@ -127,11 +126,6 @@ const EmptyState = styled.div`
   padding: ${props => props.theme.space[12]}px ${props => props.theme.space[6]}px;
   color: ${props => props.theme.colors.gray[500]};
   
-  div {
-    font-size: 4rem;
-    margin-bottom: ${props => props.theme.space[4]}px;
-  }
-  
   h3 {
     font-size: ${props => props.theme.fontSizes.xl};
     font-weight: ${props => props.theme.fontWeights.semibold};
@@ -184,7 +178,6 @@ const SongTable = () => {
     return (
       <TableContainer>
         <EmptyState>
-          <div>🎵</div>
           <h3>No songs found</h3>
           <p>Add your first song to get started!</p>
         </EmptyState>
@@ -229,14 +222,14 @@ const SongTable = () => {
                     variant="secondary"
                     onClick={() => handleEdit(song)}
                   >
-                    ✏️
+                    Edit
                   </Button>
                   <Button
                     size="sm"
                     variant="danger"
                     onClick={() => handleDelete(song)}
                   >
-                    🗑️
+                    Delete
                   </Button>
                 </ActionButtons>
               </TableCell>

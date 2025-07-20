@@ -86,8 +86,8 @@ const Header = () => {
         <MainTitle>Ethiopop Archive</MainTitle>
         <AmharicTitle>የኢትዮጵያ ሙዚቃ ማህደር</AmharicTitle>
         <Description>
-          Discover the rich musical heritage of Ethiopia. From traditional 
-          folk songs to modern Ethio-Jazz fusion, explore the stories, 
+          Discover the rich musical heritage of Ethiopia. From traditional
+          folk songs to modern Ethio-Jazz fusion, explore the stories,
           artists, and cultural significance behind each piece.
         </Description>
       </HeaderContent>

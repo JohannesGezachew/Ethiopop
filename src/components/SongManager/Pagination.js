@@ -94,8 +94,7 @@ const Pagination = () => {
     currentPage, 
     totalPages, 
     totalSongs, 
-    pageSize,
-    songs 
+    pageSize
   } = useSelector(state => state.songs);
 
   const handlePageChange = (page) => {
@@ -174,7 +173,7 @@ const Pagination = () => {
               disabled={currentPage === 1}
               onClick={() => handlePageChange(currentPage - 1)}
             >
-              ←
+              Previous
             </PageButton>
             
             {visiblePages.map((page, index) => (
@@ -195,7 +194,7 @@ const Pagination = () => {
               disabled={currentPage === totalPages}
               onClick={() => handlePageChange(currentPage + 1)}
             >
-              →
+              Next
             </PageButton>
           </PageNumbers>
         )}

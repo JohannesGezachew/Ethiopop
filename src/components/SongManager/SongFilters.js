@@ -24,14 +24,6 @@ const FiltersTitle = styled.h3`
   font-weight: ${props => props.theme.fontWeights.semibold};
   color: ${props => props.theme.colors.gray[900]};
   margin: 0 0 ${props => props.theme.space[5]}px 0;
-  display: flex;
-  align-items: center;
-  gap: ${props => props.theme.space[2]}px;
-  
-  &::before {
-    content: '🔍';
-    font-size: ${props => props.theme.fontSizes.base};
-  }
 `;
 
 const FiltersGrid = styled.div`
