@@ -4,23 +4,49 @@ import styled from '@emotion/styled';
 import { setFilters } from '@store/slices/songsSlice';
 import Input from '../UI/Input';
 import Button from '../UI/Button';
-import Card from '../UI/Card';
 
-const FiltersContainer = styled(Card)`
-  margin-bottom: ${props => props.theme.space[4]}px;
+const FiltersContainer = styled.div`
+  background: ${props => props.theme.colors.white};
+  border: 1px solid ${props => props.theme.colors.gray[200]};
+  border-radius: ${props => props.theme.radii.xl};
+  padding: ${props => props.theme.space[6]}px;
+  margin-bottom: ${props => props.theme.space[8]}px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+  
+  &:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  }
+`;
+
+const FiltersTitle = styled.h3`
+  font-size: ${props => props.theme.fontSizes.lg};
+  font-weight: ${props => props.theme.fontWeights.semibold};
+  color: ${props => props.theme.colors.gray[900]};
+  margin: 0 0 ${props => props.theme.space[5]}px 0;
+  display: flex;
+  align-items: center;
+  gap: ${props => props.theme.space[2]}px;
+  
+  &::before {
+    content: '🔍';
+    font-size: ${props => props.theme.fontSizes.base};
+  }
 `;
 
 const FiltersGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: ${props => props.theme.space[4]}px;
-  margin-bottom: ${props => props.theme.space[4]}px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: ${props => props.theme.space[5]}px;
+  margin-bottom: ${props => props.theme.space[6]}px;
 `;
 
 const FilterActions = styled.div`
   display: flex;
   gap: ${props => props.theme.space[3]}px;
   justify-content: flex-end;
+  padding-top: ${props => props.theme.space[4]}px;
+  border-top: 1px solid ${props => props.theme.colors.gray[100]};
 `;
 
 const SongFilters = () => {
@@ -54,6 +80,7 @@ const SongFilters = () => {
 
   return (
     <FiltersContainer>
+      <FiltersTitle>Filter Songs</FiltersTitle>
       <FiltersGrid>
         <Input
           label="Search"

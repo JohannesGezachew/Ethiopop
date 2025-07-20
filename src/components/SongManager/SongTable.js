@@ -6,8 +6,17 @@ import { openEditModal, openDeleteModal } from '@store/slices/uiSlice';
 import Button from '../UI/Button';
 import Card from '../UI/Card';
 
-const TableContainer = styled(Card)`
-  overflow-x: auto;
+const TableContainer = styled.div`
+  background: ${props => props.theme.colors.white};
+  border: 1px solid ${props => props.theme.colors.gray[200]};
+  border-radius: ${props => props.theme.radii.xl};
+  overflow: hidden;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+  
+  &:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  }
 `;
 
 const Table = styled.table`
@@ -16,26 +25,37 @@ const Table = styled.table`
 `;
 
 const TableHeader = styled.thead`
-  background-color: ${props => props.theme.colors.gray[50]};
+  background: linear-gradient(135deg, ${props => props.theme.colors.gray[50]} 0%, ${props => props.theme.colors.gray[25]} 100%);
 `;
 
 const TableHeaderCell = styled.th`
-  padding: ${props => props.theme.space[4]}px;
+  padding: ${props => props.theme.space[5]}px ${props => props.theme.space[4]}px;
   text-align: left;
   font-weight: ${props => props.theme.fontWeights.semibold};
   color: ${props => props.theme.colors.gray[700]};
   font-size: ${props => props.theme.fontSizes.sm};
-  border-bottom: 1px solid ${props => props.theme.colors.gray[200]};
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   white-space: nowrap;
+  border-bottom: 2px solid ${props => props.theme.colors.gray[200]};
+  
+  &:first-of-type {
+    padding-left: ${props => props.theme.space[6]}px;
+  }
+  
+  &:last-of-type {
+    padding-right: ${props => props.theme.space[6]}px;
+  }
 `;
 
 const TableBody = styled.tbody``;
 
 const TableRow = styled.tr`
-  transition: background-color 0.2s ease;
+  transition: all 0.2s ease;
   
   &:hover {
-    background-color: ${props => props.theme.colors.gray[50]};
+    background-color: ${props => props.theme.colors.gray[25]};
+    transform: translateY(-1px);
   }
   
   &:not(:last-child) {
@@ -44,38 +64,92 @@ const TableRow = styled.tr`
 `;
 
 const TableCell = styled.td`
-  padding: ${props => props.theme.space[4]}px;
+  padding: ${props => props.theme.space[5]}px ${props => props.theme.space[4]}px;
   font-size: ${props => props.theme.fontSizes.sm};
   color: ${props => props.theme.colors.gray[900]};
   vertical-align: middle;
+  
+  &:first-of-type {
+    padding-left: ${props => props.theme.space[6]}px;
+  }
+  
+  &:last-of-type {
+    padding-right: ${props => props.theme.space[6]}px;
+  }
 `;
 
 const SongTitle = styled.div`
-  font-weight: ${props => props.theme.fontWeights.medium};
+  font-weight: ${props => props.theme.fontWeights.semibold};
   color: ${props => props.theme.colors.gray[900]};
+  font-size: ${props => props.theme.fontSizes.base};
+  margin-bottom: ${props => props.theme.space[1]}px;
 `;
 
 const SongArtist = styled.div`
   color: ${props => props.theme.colors.gray[600]};
+  font-size: ${props => props.theme.fontSizes.sm};
+  font-weight: ${props => props.theme.fontWeights.medium};
+`;
+
+const GenreBadge = styled.span`
+  display: inline-block;
+  padding: ${props => props.theme.space[1]}px ${props => props.theme.space[3]}px;
+  background-color: ${props => props.theme.colors.primary[100]};
+  color: ${props => props.theme.colors.primary[700]};
+  border-radius: ${props => props.theme.radii.full};
   font-size: ${props => props.theme.fontSizes.xs};
-  margin-top: ${props => props.theme.space[1]}px;
+  font-weight: ${props => props.theme.fontWeights.medium};
+`;
+
+const LanguageBadge = styled.span`
+  display: inline-block;
+  padding: ${props => props.theme.space[1]}px ${props => props.theme.space[3]}px;
+  background-color: ${props => props.theme.colors.secondary[100]};
+  color: ${props => props.theme.colors.secondary[700]};
+  border-radius: ${props => props.theme.radii.full};
+  font-size: ${props => props.theme.fontSizes.xs};
+  font-weight: ${props => props.theme.fontWeights.medium};
 `;
 
 const ActionButtons = styled.div`
   display: flex;
   gap: ${props => props.theme.space[2]}px;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+  
+  tr:hover & {
+    opacity: 1;
+  }
 `;
 
 const EmptyState = styled.div`
   text-align: center;
-  padding: ${props => props.theme.space[8]}px;
+  padding: ${props => props.theme.space[12]}px ${props => props.theme.space[6]}px;
   color: ${props => props.theme.colors.gray[500]};
+  
+  div {
+    font-size: 4rem;
+    margin-bottom: ${props => props.theme.space[4]}px;
+  }
+  
+  h3 {
+    font-size: ${props => props.theme.fontSizes.xl};
+    font-weight: ${props => props.theme.fontWeights.semibold};
+    color: ${props => props.theme.colors.gray[700]};
+    margin-bottom: ${props => props.theme.space[2]}px;
+  }
+  
+  p {
+    font-size: ${props => props.theme.fontSizes.base};
+    color: ${props => props.theme.colors.gray[500]};
+  }
 `;
 
 const LoadingState = styled.div`
   text-align: center;
-  padding: ${props => props.theme.space[8]}px;
+  padding: ${props => props.theme.space[12]}px ${props => props.theme.space[6]}px;
   color: ${props => props.theme.colors.gray[500]};
+  font-size: ${props => props.theme.fontSizes.lg};
 `;
 
 const formatDuration = (seconds) => {
@@ -141,9 +215,13 @@ const SongTable = () => {
               </TableCell>
               <TableCell>{song.album}</TableCell>
               <TableCell>{song.year}</TableCell>
-              <TableCell>{song.genre}</TableCell>
+              <TableCell>
+                <GenreBadge>{song.genre}</GenreBadge>
+              </TableCell>
               <TableCell>{formatDuration(song.duration)}</TableCell>
-              <TableCell>{song.language}</TableCell>
+              <TableCell>
+                <LanguageBadge>{song.language}</LanguageBadge>
+              </TableCell>
               <TableCell>
                 <ActionButtons>
                   <Button

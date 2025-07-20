@@ -6,37 +6,73 @@ import Button from '../UI/Button';
 
 const PaginationContainer = styled.div`
   display: flex;
-  justify-content: between;
+  justify-content: space-between;
   align-items: center;
   gap: ${props => props.theme.space[4]}px;
   flex-wrap: wrap;
-  margin-top: ${props => props.theme.space[4]}px;
+  margin-top: ${props => props.theme.space[8]}px;
+  padding: ${props => props.theme.space[6]}px;
+  background: ${props => props.theme.colors.white};
+  border: 1px solid ${props => props.theme.colors.gray[200]};
+  border-radius: ${props => props.theme.radii.xl};
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
 `;
 
 const PaginationInfo = styled.div`
   font-size: ${props => props.theme.fontSizes.sm};
   color: ${props => props.theme.colors.gray[600]};
+  font-weight: ${props => props.theme.fontWeights.medium};
   flex: 1;
+  
+  @media (max-width: ${props => props.theme.breakpoints[0]}) {
+    margin-bottom: ${props => props.theme.space[4]}px;
+    flex: none;
+    width: 100%;
+  }
 `;
 
 const PaginationControls = styled.div`
   display: flex;
   align-items: center;
+  gap: ${props => props.theme.space[4]}px;
+  
+  @media (max-width: ${props => props.theme.breakpoints[0]}) {
+    width: 100%;
+    justify-content: space-between;
+  }
+`;
+
+const PageSizeContainer = styled.div`
+  display: flex;
+  align-items: center;
   gap: ${props => props.theme.space[2]}px;
+`;
+
+const PageSizeLabel = styled.span`
+  font-size: ${props => props.theme.fontSizes.sm};
+  color: ${props => props.theme.colors.gray[600]};
+  font-weight: ${props => props.theme.fontWeights.medium};
 `;
 
 const PageSizeSelector = styled.select`
   padding: ${props => props.theme.space[2]}px ${props => props.theme.space[3]}px;
   border: 1px solid ${props => props.theme.colors.gray[300]};
-  border-radius: ${props => props.theme.radii.md};
+  border-radius: ${props => props.theme.radii.lg};
   font-size: ${props => props.theme.fontSizes.sm};
   background-color: ${props => props.theme.colors.white};
   cursor: pointer;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
   
   &:focus {
     outline: none;
     border-color: ${props => props.theme.colors.primary[500]};
-    box-shadow: 0 0 0 3px ${props => props.theme.colors.primary[100]};
+    box-shadow: 0 0 0 3px ${props => props.theme.colors.primary[100]}, 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  }
+  
+  &:hover {
+    border-color: ${props => props.theme.colors.gray[400]};
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
   }
 `;
 
@@ -49,6 +85,7 @@ const PageButton = styled(Button)`
   min-width: 40px;
   height: 40px;
   padding: 0;
+  border-radius: ${props => props.theme.radii.lg};
 `;
 
 const Pagination = () => {
@@ -116,8 +153,8 @@ const Pagination = () => {
       </PaginationInfo>
       
       <PaginationControls>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <span style={{ fontSize: '14px', color: '#6b7280' }}>Show:</span>
+        <PageSizeContainer>
+          <PageSizeLabel>Show:</PageSizeLabel>
           <PageSizeSelector
             value={pageSize}
             onChange={handlePageSizeChange}
@@ -127,7 +164,7 @@ const Pagination = () => {
             <option value={20}>20</option>
             <option value={50}>50</option>
           </PageSizeSelector>
-        </div>
+        </PageSizeContainer>
         
         {totalPages > 1 && (
           <PageNumbers>

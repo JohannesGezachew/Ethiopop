@@ -5,47 +5,60 @@ import { css } from '@emotion/react';
 const getVariantStyles = (variant, theme) => {
   const variants = {
     primary: css`
-      background-color: ${theme.colors.primary[500]};
+      background: linear-gradient(135deg, ${theme.colors.primary[500]} 0%, ${theme.colors.primary[600]} 100%);
       color: ${theme.colors.white};
       border: 1px solid ${theme.colors.primary[500]};
+      box-shadow: 0 2px 4px 0 rgba(245, 149, 50, 0.2);
       
       &:hover:not(:disabled) {
-        background-color: ${theme.colors.primary[600]};
+        background: linear-gradient(135deg, ${theme.colors.primary[600]} 0%, ${theme.colors.primary[700]} 100%);
         border-color: ${theme.colors.primary[600]};
+        box-shadow: 0 4px 8px 0 rgba(245, 149, 50, 0.3);
+        transform: translateY(-1px);
       }
       
       &:active:not(:disabled) {
-        background-color: ${theme.colors.primary[700]};
-        border-color: ${theme.colors.primary[700]};
+        background: linear-gradient(135deg, ${theme.colors.primary[700]} 0%, ${theme.colors.primary[800]} 100%);
+        transform: translateY(0);
+        box-shadow: 0 2px 4px 0 rgba(245, 149, 50, 0.2);
       }
     `,
     secondary: css`
       background-color: ${theme.colors.white};
       color: ${theme.colors.gray[700]};
       border: 1px solid ${theme.colors.gray[300]};
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
       
       &:hover:not(:disabled) {
         background-color: ${theme.colors.gray[50]};
         border-color: ${theme.colors.gray[400]};
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+        transform: translateY(-1px);
       }
       
       &:active:not(:disabled) {
         background-color: ${theme.colors.gray[100]};
+        transform: translateY(0);
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
       }
     `,
     danger: css`
-      background-color: ${theme.colors.red[500]};
+      background: linear-gradient(135deg, ${theme.colors.red[500]} 0%, ${theme.colors.red[600]} 100%);
       color: ${theme.colors.white};
       border: 1px solid ${theme.colors.red[500]};
+      box-shadow: 0 2px 4px 0 rgba(239, 68, 68, 0.2);
       
       &:hover:not(:disabled) {
-        background-color: ${theme.colors.red[600]};
+        background: linear-gradient(135deg, ${theme.colors.red[600]} 0%, ${theme.colors.red[700]} 100%);
         border-color: ${theme.colors.red[600]};
+        box-shadow: 0 4px 8px 0 rgba(239, 68, 68, 0.3);
+        transform: translateY(-1px);
       }
       
       &:active:not(:disabled) {
-        background-color: ${theme.colors.red[700]};
-        border-color: ${theme.colors.red[700]};
+        background: linear-gradient(135deg, ${theme.colors.red[700]} 0%, ${theme.colors.red[800]} 100%);
+        transform: translateY(0);
+        box-shadow: 0 2px 4px 0 rgba(239, 68, 68, 0.2);
       }
     `,
     ghost: css`
@@ -56,10 +69,12 @@ const getVariantStyles = (variant, theme) => {
       &:hover:not(:disabled) {
         background-color: ${theme.colors.gray[100]};
         color: ${theme.colors.gray[700]};
+        transform: translateY(-1px);
       }
       
       &:active:not(:disabled) {
         background-color: ${theme.colors.gray[200]};
+        transform: translateY(0);
       }
     `,
   };
