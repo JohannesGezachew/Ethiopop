@@ -42,39 +42,8 @@ module.exports = (env, argv) => {
           test: /\.css$/,
           use: ['style-loader', 'css-loader'],
         },
-        {
-          test: /\.(png|jpe?g|gif|webp)$/i,
-          type: 'asset/resource',
-          generator: {
-            filename: 'images/[name].[hash][ext]',
-          },
-        },
-        {
-          test: /\.svg$/,
-          use: [
-            {
-              loader: '@svgr/webpack',
-              options: {
-                prettier: false,
-                svgo: false,
-                svgoConfig: {
-                  plugins: [{ removeViewBox: false }],
-                },
-                titleProp: true,
-                ref: true,
-              },
-            },
-            {
-              loader: 'file-loader',
-              options: {
-                name: 'assets/icons/[name].[hash].[ext]',
-              },
-            },
-          ],
-          issuer: {
-            and: [/\.(ts|tsx|js|jsx|md|mdx)$/],
-          },
-        },
+
+
       ],
     },
     plugins: [
