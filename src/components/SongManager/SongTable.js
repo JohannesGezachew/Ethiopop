@@ -356,7 +356,7 @@ const SongTable = () => {
                 </Button>
               </MobileCardActions>
             </MobileCardHeader>
-            
+
             <MobileCardDetails>
               <MobileDetailItem>
                 <MobileDetailLabel>Album</MobileDetailLabel>
