@@ -16,6 +16,14 @@ const PaginationContainer = styled.div`
   border: 1px solid ${props => props.theme.colors.gray[200]};
   border-radius: ${props => props.theme.radii.xl};
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+    padding: ${props => props.theme.space[4]}px;
+    margin-top: ${props => props.theme.space[6]}px;
+    border-radius: ${props => props.theme.radii.lg};
+    gap: ${props => props.theme.space[3]}px;
+  }
 `;
 
 const PaginationInfo = styled.div`
@@ -24,10 +32,11 @@ const PaginationInfo = styled.div`
   font-weight: ${props => props.theme.fontWeights.medium};
   flex: 1;
   
-  @media (max-width: ${props => props.theme.breakpoints[0]}) {
-    margin-bottom: ${props => props.theme.space[4]}px;
+  @media (max-width: 768px) {
     flex: none;
     width: 100%;
+    text-align: center;
+    margin-bottom: ${props => props.theme.space[2]}px;
   }
 `;
 
@@ -36,9 +45,10 @@ const PaginationControls = styled.div`
   align-items: center;
   gap: ${props => props.theme.space[4]}px;
   
-  @media (max-width: ${props => props.theme.breakpoints[0]}) {
+  @media (max-width: 768px) {
     width: 100%;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: ${props => props.theme.space[3]}px;
   }
 `;
 

@@ -11,12 +11,23 @@ const HeaderContainer = styled.div`
   flex-wrap: wrap;
   gap: ${props => props.theme.space[4]}px;
   margin-bottom: ${props => props.theme.space[6]}px;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: stretch;
+    gap: ${props => props.theme.space[3]}px;
+    margin-bottom: ${props => props.theme.space[4]}px;
+  }
 `;
 
 const HeaderLeft = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${props => props.theme.space[2]}px;
+  
+  @media (max-width: 768px) {
+    text-align: center;
+  }
 `;
 
 const Title = styled.h2`
@@ -24,6 +35,10 @@ const Title = styled.h2`
   font-weight: ${props => props.theme.fontWeights.semibold};
   color: ${props => props.theme.colors.gray[900]};
   margin: 0;
+  
+  @media (max-width: 768px) {
+    font-size: ${props => props.theme.fontSizes.xl};
+  }
 `;
 
 const StatsContainer = styled.div`
@@ -32,11 +47,20 @@ const StatsContainer = styled.div`
   gap: ${props => props.theme.space[4]}px;
   font-size: ${props => props.theme.fontSizes.sm};
   color: ${props => props.theme.colors.gray[600]};
+  
+  @media (max-width: 768px) {
+    justify-content: center;
+    gap: ${props => props.theme.space[3]}px;
+  }
 `;
 
 const HeaderRight = styled.div`
   display: flex;
   align-items: center;
+  
+  @media (max-width: 768px) {
+    justify-content: center;
+  }
 `;
 
 const SongHeader = () => {

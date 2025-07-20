@@ -9,7 +9,7 @@ import { makeServer } from './mirage/server';
 try {
   const server = makeServer({ environment: 'production' });
   console.log('MirageJS server started successfully');
-  
+
   // Add a test to verify the server is working
   window.mirageServer = server;
 } catch (error) {

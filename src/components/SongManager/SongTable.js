@@ -16,11 +16,92 @@ const TableContainer = styled.div`
   &:hover {
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
   }
+  
+  @media (max-width: 768px) {
+    border-radius: ${props => props.theme.radii.lg};
+    overflow: visible;
+  }
 `;
 
 const Table = styled.table`
   width: 100%;
   border-collapse: collapse;
+  
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
+
+const MobileCardList = styled.div`
+  display: none;
+  
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    gap: ${props => props.theme.space[3]}px;
+    padding: ${props => props.theme.space[4]}px;
+  }
+`;
+
+const MobileCard = styled.div`
+  background: ${props => props.theme.colors.white};
+  border: 1px solid ${props => props.theme.colors.gray[200]};
+  border-radius: ${props => props.theme.radii.lg};
+  padding: ${props => props.theme.space[4]}px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+  cursor: pointer;
+  
+  &:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transform: translateY(-1px);
+  }
+`;
+
+const MobileCardHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: ${props => props.theme.space[3]}px;
+`;
+
+const MobileCardInfo = styled.div`
+  flex: 1;
+  min-width: 0;
+`;
+
+const MobileCardActions = styled.div`
+  display: flex;
+  gap: ${props => props.theme.space[2]}px;
+  flex-shrink: 0;
+  margin-left: ${props => props.theme.space[3]}px;
+`;
+
+const MobileCardDetails = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: ${props => props.theme.space[2]}px;
+  font-size: ${props => props.theme.fontSizes.sm};
+  color: ${props => props.theme.colors.gray[600]};
+`;
+
+const MobileDetailItem = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${props => props.theme.space[1]}px;
+`;
+
+const MobileDetailLabel = styled.span`
+  font-size: ${props => props.theme.fontSizes.xs};
+  color: ${props => props.theme.colors.gray[500]};
+  font-weight: ${props => props.theme.fontWeights.medium};
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+`;
+
+const MobileDetailValue = styled.span`
+  color: ${props => props.theme.colors.gray[700]};
+  font-weight: ${props => props.theme.fontWeights.medium};
 `;
 
 const TableHeader = styled.thead`
@@ -197,6 +278,7 @@ const SongTable = () => {
 
   return (
     <TableContainer>
+      {/* Desktop Table View */}
       <Table>
         <TableHeader>
           <tr>
@@ -247,6 +329,63 @@ const SongTable = () => {
           ))}
         </TableBody>
       </Table>
+
+      {/* Mobile Card View */}
+      <MobileCardList>
+        {songs.map((song) => (
+          <MobileCard key={song.id} onClick={(e) => handleSongClick(song, e)}>
+            <MobileCardHeader>
+              <MobileCardInfo>
+                <SongTitle>{song.title}</SongTitle>
+                <SongArtist>{song.artist}</SongArtist>
+              </MobileCardInfo>
+              <MobileCardActions>
+                <Button
+                  size="sm"
+                  variant="secondary"
+                  onClick={() => handleEdit(song)}
+                >
+                  Edit
+                </Button>
+                <Button
+                  size="sm"
+                  variant="danger"
+                  onClick={() => handleDelete(song)}
+                >
+                  Delete
+                </Button>
+              </MobileCardActions>
+            </MobileCardHeader>
+            
+            <MobileCardDetails>
+              <MobileDetailItem>
+                <MobileDetailLabel>Album</MobileDetailLabel>
+                <MobileDetailValue>{song.album}</MobileDetailValue>
+              </MobileDetailItem>
+              <MobileDetailItem>
+                <MobileDetailLabel>Year</MobileDetailLabel>
+                <MobileDetailValue>{song.year}</MobileDetailValue>
+              </MobileDetailItem>
+              <MobileDetailItem>
+                <MobileDetailLabel>Genre</MobileDetailLabel>
+                <MobileDetailValue>
+                  <GenreBadge>{song.genre}</GenreBadge>
+                </MobileDetailValue>
+              </MobileDetailItem>
+              <MobileDetailItem>
+                <MobileDetailLabel>Duration</MobileDetailLabel>
+                <MobileDetailValue>{formatDuration(song.duration)}</MobileDetailValue>
+              </MobileDetailItem>
+              <MobileDetailItem>
+                <MobileDetailLabel>Language</MobileDetailLabel>
+                <MobileDetailValue>
+                  <LanguageBadge>{song.language}</LanguageBadge>
+                </MobileDetailValue>
+              </MobileDetailItem>
+            </MobileCardDetails>
+          </MobileCard>
+        ))}
+      </MobileCardList>
     </TableContainer>
   );
 };

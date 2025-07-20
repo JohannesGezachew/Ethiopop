@@ -38,10 +38,10 @@ export const fetchSongs = async ({ page = 1, pageSize = 10, filters = {} } = {})
       Object.entries(filters).filter(([_, value]) => value && value.trim() !== '')
     ),
   });
-  
+
   const url = `/songs?${params}`;
   console.log('Fetching songs from:', API_BASE_URL + url);
-  
+
   try {
     const result = await api.get(url);
     console.log('Songs fetched successfully:', result);
