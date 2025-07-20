@@ -172,17 +172,17 @@ export function makeServer({ environment = 'development' } = {}) {
       this.post('/songs', (schema, request) => {
         const attrs = JSON.parse(request.requestBody);
         const songs = loadSongs();
-        
+
         const newSong = {
           ...attrs,
           id: generateId(),
           createdAt: new Date().toISOString(),
           isDefault: false
         };
-        
+
         songs.unshift(newSong); // Add to beginning of array
         saveSongs(songs);
-        
+
         return newSong;
       });
 
@@ -191,21 +191,21 @@ export function makeServer({ environment = 'development' } = {}) {
         const id = request.params.id;
         const attrs = JSON.parse(request.requestBody);
         const songs = loadSongs();
-        
+
         const songIndex = songs.findIndex(song => song.id === id);
         if (songIndex === -1) {
           return new Response(404, {}, { error: 'Song not found' });
         }
-        
+
         const updatedSong = {
           ...songs[songIndex],
           ...attrs,
           updatedAt: new Date().toISOString()
         };
-        
+
         songs[songIndex] = updatedSong;
         saveSongs(songs);
-        
+
         return updatedSong;
       });
 
@@ -213,15 +213,15 @@ export function makeServer({ environment = 'development' } = {}) {
       this.delete('/songs/:id', (schema, request) => {
         const id = request.params.id;
         const songs = loadSongs();
-        
+
         const songIndex = songs.findIndex(song => song.id === id);
         if (songIndex === -1) {
           return new Response(404, {}, { error: 'Song not found' });
         }
-        
+
         songs.splice(songIndex, 1);
         saveSongs(songs);
-        
+
         return new Response(204);
       });
 
@@ -229,12 +229,12 @@ export function makeServer({ environment = 'development' } = {}) {
       this.get('/songs/:id', (schema, request) => {
         const id = request.params.id;
         const songs = loadSongs();
-        
+
         const song = songs.find(song => song.id === id);
         if (!song) {
           return new Response(404, {}, { error: 'Song not found' });
         }
-        
+
         return song;
       });
     },
