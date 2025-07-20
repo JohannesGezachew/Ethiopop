@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="musicGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ff6b35;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f7931e;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <circle cx="50" cy="50" r="45" fill="url(#musicGradient)" stroke="#fff" stroke-width="2"/>
+  <path d="M35 65 Q35 55 45 55 Q55 55 55 65 Q55 75 45 75 Q35 75 35 65 Z" fill="#fff"/>
+  <path d="M55 65 L55 35 Q55 30 60 30 L75 35 Q80 37 80 42 L80 45 Q80 50 75 48 L60 43 Q55 41 55 45 L55 65" fill="#fff"/>
+  <circle cx="42.5" cy="65" r="3" fill="url(#musicGradient)"/>
+</svg>
