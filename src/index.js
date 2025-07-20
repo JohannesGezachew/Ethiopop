@@ -5,10 +5,8 @@ import { store } from '@store/store';
 import App from './App';
 import { makeServer } from './mirage/server';
 
-// Start MirageJS server in development only
-if (process.env.NODE_ENV !== 'production') {
-  makeServer();
-}
+// Start MirageJS server (enabled for demo purposes)
+makeServer();
 
 const container = document.getElementById('root');
 const root = createRoot(container);
