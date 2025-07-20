@@ -100,6 +100,15 @@ const SongForm = ({ id, formData, setFormData, errors, onSubmit }) => {
         required
       />
       
+      <Input
+        label="Description"
+        placeholder="Enter song description..."
+        value={formData.description || ''}
+        onChange={(e) => handleChange('description', e.target.value)}
+        multiline
+        rows={3}
+      />
+      
       <FormRow>
         <Input
           label="Year"

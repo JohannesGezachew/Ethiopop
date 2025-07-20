@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from '@emotion/styled';
 import { setSelectedSong } from '@store/slices/songsSlice';
-import { openEditModal, openDeleteModal } from '@store/slices/uiSlice';
+import { openEditModal, openDeleteModal, openSongDetailsModal } from '@store/slices/uiSlice';
 import Button from '../UI/Button';
 
 const TableContainer = styled.div`
@@ -51,10 +51,12 @@ const TableBody = styled.tbody``;
 
 const TableRow = styled.tr`
   transition: all 0.2s ease;
+  cursor: pointer;
   
   &:hover {
     background-color: ${props => props.theme.colors.gray[25]};
     transform: translateY(-1px);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.05);
   }
   
   &:not(:last-child) {
@@ -166,6 +168,14 @@ const SongTable = () => {
     dispatch(openDeleteModal());
   };
 
+  const handleSongClick = (song, e) => {
+    // Don't open details if clicking on action buttons
+    if (e.target.closest('button')) {
+      return;
+    }
+    dispatch(openSongDetailsModal(song));
+  };
+
   if (loading) {
     return (
       <TableContainer>
@@ -201,7 +211,7 @@ const SongTable = () => {
         </TableHeader>
         <TableBody>
           {songs.map((song) => (
-            <TableRow key={song.id}>
+            <TableRow key={song.id} onClick={(e) => handleSongClick(song, e)}>
               <TableCell>
                 <SongTitle>{song.title}</SongTitle>
                 <SongArtist>{song.artist}</SongArtist>

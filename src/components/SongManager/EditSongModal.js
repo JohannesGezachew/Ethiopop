@@ -19,6 +19,7 @@ const EditSongModal = () => {
     genre: '',
     duration: 180,
     language: 'Amharic',
+    description: '',
   });
 
   const [errors, setErrors] = useState({});
@@ -33,6 +34,7 @@ const EditSongModal = () => {
         genre: selectedSong.genre || '',
         duration: selectedSong.duration || 180,
         language: selectedSong.language || 'Amharic',
+        description: selectedSong.description || '',
       });
     }
   }, [selectedSong]);

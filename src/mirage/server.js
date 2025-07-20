@@ -52,6 +52,26 @@ export function makeServer({ environment = 'development' } = {}) {
         language(i) {
           const languages = ['Amharic', 'Tigrinya', 'Oromo', 'English'];
           return languages[i % languages.length];
+        },
+        description(i) {
+          const descriptions = [
+            'A beautiful traditional Ethiopian song that captures the essence of nostalgia and longing, deeply rooted in Ethiopian musical heritage.',
+            'An uplifting modern composition blending traditional Ethiopian melodies with contemporary arrangements, celebrating cultural identity.',
+            'A soulful ballad expressing love and devotion, featuring traditional Ethiopian instruments and heartfelt vocals.',
+            'A rhythmic celebration of Ethiopian culture, combining ancient musical traditions with modern production techniques.',
+            'An emotional journey through Ethiopian history, told through powerful lyrics and traditional musical arrangements.',
+            'A contemporary interpretation of classic Ethiopian folk music, bridging generations through timeless melodies.',
+            'A spiritual composition reflecting Ethiopian Orthodox traditions, featuring traditional chants and modern harmonies.',
+            'An energetic fusion of Ethiopian jazz and traditional music, showcasing the rich musical diversity of Ethiopia.',
+            'A romantic ballad celebrating Ethiopian love stories, with poetic lyrics and beautiful instrumental arrangements.',
+            'A patriotic anthem honoring Ethiopian heritage, combining traditional instruments with powerful vocal performances.',
+            'A meditative piece inspired by Ethiopian landscapes, featuring ambient sounds and traditional melodies.',
+            'A festive celebration song perfect for Ethiopian holidays and cultural gatherings, full of joy and energy.',
+            'A contemplative composition exploring themes of identity and belonging in Ethiopian culture.',
+            'A dynamic fusion piece blending Ethiopian traditional music with contemporary world music influences.',
+            'A heartfelt tribute to Ethiopian mothers and families, featuring tender vocals and traditional accompaniment.'
+          ];
+          return descriptions[i % descriptions.length];
         }
       }),
     },

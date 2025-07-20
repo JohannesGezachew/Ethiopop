@@ -19,6 +19,7 @@ const CreateSongModal = () => {
     genre: '',
     duration: 180,
     language: 'Amharic',
+    description: '',
   });
 
   const [errors, setErrors] = useState({});
@@ -33,6 +34,7 @@ const CreateSongModal = () => {
       genre: '',
       duration: 180,
       language: 'Amharic',
+      description: '',
     });
     setErrors({});
   };

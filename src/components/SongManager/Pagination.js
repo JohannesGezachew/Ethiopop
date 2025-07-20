@@ -55,24 +55,34 @@ const PageSizeLabel = styled.span`
 `;
 
 const PageSizeSelector = styled.select`
-  padding: ${props => props.theme.space[2]}px ${props => props.theme.space[3]}px;
+  padding: ${props => props.theme.space[3]}px ${props => props.theme.space[4]}px;
+  padding-right: ${props => props.theme.space[8]}px;
   border: 1px solid ${props => props.theme.colors.gray[300]};
   border-radius: ${props => props.theme.radii.lg};
   font-size: ${props => props.theme.fontSizes.sm};
+  font-weight: ${props => props.theme.fontWeights.medium};
   background-color: ${props => props.theme.colors.white};
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right ${props => props.theme.space[3]}px center;
+  background-repeat: no-repeat;
+  background-size: 16px;
   cursor: pointer;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   transition: all 0.2s ease;
+  appearance: none;
+  min-width: 80px;
   
   &:focus {
     outline: none;
     border-color: ${props => props.theme.colors.primary[500]};
     box-shadow: 0 0 0 3px ${props => props.theme.colors.primary[100]}, 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    transform: translateY(-1px);
   }
   
-  &:hover {
+  &:hover:not(:focus) {
     border-color: ${props => props.theme.colors.gray[400]};
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+    transform: translateY(-1px);
   }
 `;
 
