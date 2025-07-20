@@ -97,18 +97,18 @@ export function makeServer({ environment = 'development' } = {}) {
 
         // Apply filters
         if (search) {
-          songs = songs.filter(song => 
+          songs = songs.filter(song =>
             song.title.toLowerCase().includes(search.toLowerCase()) ||
             song.artist.toLowerCase().includes(search.toLowerCase())
           );
         }
         if (artist) {
-          songs = songs.filter(song => 
+          songs = songs.filter(song =>
             song.artist.toLowerCase().includes(artist.toLowerCase())
           );
         }
         if (album) {
-          songs = songs.filter(song => 
+          songs = songs.filter(song =>
             song.album.toLowerCase().includes(album.toLowerCase())
           );
         }

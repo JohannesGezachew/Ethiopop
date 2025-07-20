@@ -3,24 +3,9 @@ import styled from '@emotion/styled';
 
 const HeaderContainer = styled.header`
   background: linear-gradient(135deg, #fefefe 0%, #f8fafc 100%);
-  padding: ${props => props.theme.space[12]}px ${props => props.theme.space[6]}px ${props => props.theme.space[10]}px;
+  padding: ${props => props.theme.space[8]}px ${props => props.theme.space[6]}px ${props => props.theme.space[10]}px;
   text-align: center;
   border-bottom: 1px solid ${props => props.theme.colors.gray[100]};
-  position: relative;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, 
-      ${props => props.theme.colors.primary[500]} 0%, 
-      ${props => props.theme.colors.secondary[500]} 50%, 
-      ${props => props.theme.colors.primary[500]} 100%
-    );
-  }
 `;
 
 const HeaderContent = styled.div`
