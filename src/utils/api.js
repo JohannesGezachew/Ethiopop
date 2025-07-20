@@ -39,7 +39,17 @@ export const fetchSongs = async ({ page = 1, pageSize = 10, filters = {} } = {})
     ),
   });
   
-  return api.get(`/songs?${params}`);
+  const url = `/songs?${params}`;
+  console.log('Fetching songs from:', API_BASE_URL + url);
+  
+  try {
+    const result = await api.get(url);
+    console.log('Songs fetched successfully:', result);
+    return result;
+  } catch (error) {
+    console.error('Failed to fetch songs:', error);
+    throw error;
+  }
 };
 
 export const createSong = async (songData) => {

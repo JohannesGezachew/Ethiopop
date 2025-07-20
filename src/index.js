@@ -6,7 +6,15 @@ import App from './App';
 import { makeServer } from './mirage/server';
 
 // Start MirageJS server (enabled for demo purposes)
-makeServer();
+try {
+  const server = makeServer({ environment: 'production' });
+  console.log('MirageJS server started successfully');
+  
+  // Add a test to verify the server is working
+  window.mirageServer = server;
+} catch (error) {
+  console.error('Failed to start MirageJS server:', error);
+}
 
 const container = document.getElementById('root');
 const root = createRoot(container);

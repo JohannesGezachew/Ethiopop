@@ -116,9 +116,19 @@ const generateId = () => {
 export function makeServer({ environment = 'development' } = {}) {
   return createServer({
     environment,
+    timing: environment === 'development' ? 400 : 0, // No delay in production
 
     routes() {
       this.namespace = 'api';
+      
+      // Add logging for debugging
+      this.pretender.handledRequest = function(verb, path, request) {
+        console.log(`MirageJS handled: ${verb} ${path}`);
+      };
+      
+      this.pretender.unhandledRequest = function(verb, path) {
+        console.log(`MirageJS unhandled: ${verb} ${path}`);
+      };
 
       // Get songs with pagination and filtering
       this.get('/songs', (schema, request) => {
