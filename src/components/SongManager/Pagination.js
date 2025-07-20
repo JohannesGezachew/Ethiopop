@@ -88,6 +88,21 @@ const PageButton = styled(Button)`
   border-radius: ${props => props.theme.radii.lg};
 `;
 
+const NavButton = styled(Button)`
+  height: 40px;
+  padding: 0 ${props => props.theme.space[4]}px;
+  border-radius: ${props => props.theme.radii.lg};
+  font-size: ${props => props.theme.fontSizes.sm};
+  font-weight: ${props => props.theme.fontWeights.medium};
+  min-width: auto;
+  white-space: nowrap;
+  
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+`;
+
 const Pagination = () => {
   const dispatch = useDispatch();
   const { 
@@ -167,14 +182,13 @@ const Pagination = () => {
         
         {totalPages > 1 && (
           <PageNumbers>
-            <PageButton
+            <NavButton
               variant="secondary"
-              size="sm"
               disabled={currentPage === 1}
               onClick={() => handlePageChange(currentPage - 1)}
             >
               Previous
-            </PageButton>
+            </NavButton>
             
             {visiblePages.map((page, index) => (
               <PageButton
@@ -188,14 +202,13 @@ const Pagination = () => {
               </PageButton>
             ))}
             
-            <PageButton
+            <NavButton
               variant="secondary"
-              size="sm"
               disabled={currentPage === totalPages}
               onClick={() => handlePageChange(currentPage + 1)}
             >
               Next
-            </PageButton>
+            </NavButton>
           </PageNumbers>
         )}
       </PaginationControls>
