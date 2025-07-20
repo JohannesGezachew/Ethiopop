@@ -38,6 +38,11 @@ function* createSongSaga(action) {
       type: 'success',
       message: 'Song created successfully',
     }));
+    
+    // Refresh the songs list after creating a new song
+    const currentState = yield select();
+    const { currentPage, pageSize, filters } = currentState.songs;
+    yield put(fetchSongsRequest({ page: currentPage, pageSize, filters }));
   } catch (error) {
     yield put(createSongFailure(error.message));
     yield put(addNotification({
@@ -55,6 +60,11 @@ function* updateSongSaga(action) {
       type: 'success',
       message: 'Song updated successfully',
     }));
+    
+    // Refresh the songs list after updating a song
+    const currentState = yield select();
+    const { currentPage, pageSize, filters } = currentState.songs;
+    yield put(fetchSongsRequest({ page: currentPage, pageSize, filters }));
   } catch (error) {
     yield put(updateSongFailure(error.message));
     yield put(addNotification({
@@ -72,6 +82,11 @@ function* deleteSongSaga(action) {
       type: 'success',
       message: 'Song deleted successfully',
     }));
+    
+    // Refresh the songs list after deleting a song
+    const currentState = yield select();
+    const { currentPage, pageSize, filters } = currentState.songs;
+    yield put(fetchSongsRequest({ page: currentPage, pageSize, filters }));
   } catch (error) {
     yield put(deleteSongFailure(error.message));
     yield put(addNotification({

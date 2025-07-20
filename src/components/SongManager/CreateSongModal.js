@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createSongRequest } from '@store/slices/songsSlice';
 import { closeCreateModal } from '@store/slices/uiSlice';
 import Modal from '../UI/Modal';
-import Input from '../UI/Input';
 import Button from '../UI/Button';
 import SongForm from './SongForm';
 
